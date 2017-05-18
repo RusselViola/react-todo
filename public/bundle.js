@@ -25521,6 +25521,12 @@
 	        text: 'Walk the dog'
 	      }, {
 	        id: 2,
+	        text: 'Wash the car'
+	      }, {
+	        id: 3,
+	        text: 'Do the dishes'
+	      }, {
+	        id: 4,
 	        text: 'Mow the lawn'
 	      }]
 	    };
@@ -25556,6 +25562,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(9);
@@ -25590,7 +25598,7 @@
 
 	      var renderTodos = function renderTodos() {
 	        return todos.map(function (todo) {
-	          return _react2.default.createElement(_Todo2.default, { key: todo.id });
+	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
 	        });
 	      };
 	      return _react2.default.createElement(
@@ -25633,22 +25641,25 @@
 	var Todo = function (_Component) {
 	  _inherits(Todo, _Component);
 
-	  function Todo(props) {
+	  function Todo() {
 	    _classCallCheck(this, Todo);
 
-	    var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this, props));
-
-	    _this.state = {};
-	    return _this;
+	    return _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).apply(this, arguments));
 	  }
 
 	  _createClass(Todo, [{
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props,
+	          text = _props.text,
+	          id = _props.id;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'asdfasdf'
+	        id,
+	        '. ',
+	        text
 	      );
 	    }
 	  }]);

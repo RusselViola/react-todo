@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 
 export default class Todo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  };
-
   render() {
+    let {text, id} = this.props;
     return (
       <div>
-        asdfasdf
+        {id}. {text}
       </div>
     )
   }

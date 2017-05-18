@@ -9,7 +9,7 @@ export default class TodoList extends Component {
       return(
         todos.map((todo) => {
           return(
-            <Todo key={todo.id}/>
+            <Todo key={todo.id} {...todo}/>
           )
         })
       )

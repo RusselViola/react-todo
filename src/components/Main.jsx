@@ -12,6 +12,14 @@ export default class Main extends Component {
         },
         {
           id: 2,
+          text: 'Wash the car'
+        },
+        {
+          id: 3,
+          text: 'Do the dishes'
+        },
+        {
+          id: 4,
           text: 'Mow the lawn'
         }
       ]
