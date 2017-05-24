@@ -27,7 +27,7 @@ export default class Main extends Component {
     }
   };
 
-  handleAddTodo() {
+  handleAddTodo(text) {
     alert('New Todo: ' + text)
   }
 
