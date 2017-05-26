@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 export default class TodoSearch extends Component {
 
+  handleSearch() {
+    let showCompleted = this.refs.showCompleted.checked;
+    let searchText = this.refs.searchText.value;
+
+    this.props.onSearch(showCompleted, searchText);
+  }
+
   render() {
     return (
       <div>
