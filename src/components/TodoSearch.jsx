@@ -18,6 +18,7 @@ export default class TodoSearch extends Component {
         <div>
           <label>
             <input type="checkbox" ref="showCompleted" onChange={this.handleSearch}/>
+            Show completed todos
           </label>
         </div>
       </div>
