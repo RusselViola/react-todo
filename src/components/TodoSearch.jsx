@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 export default class TodoSearch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+    this.handleSearch = this.handleSearch.bind(this);
+  }
 
   handleSearch() {
     let showCompleted = this.refs.showCompleted.checked;
