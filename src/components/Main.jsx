@@ -3,6 +3,8 @@ import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
+const uuid = require('node-uuid');
+
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -11,27 +13,36 @@ export default class Main extends Component {
       searchText: '',
       todos: [
         {
-          id: 1,
+          id: uuid(),
           text: 'Walk the dog'
         },
         {
-          id: 2,
+          id: uuid(),
           text: 'Wash the car'
         },
         {
-          id: 3,
+          id: uuid(),
           text: 'Do the dishes'
         },
         {
-          id: 4,
+          id: uuid(),
           text: 'Mow the lawn'
         }
       ]
     }
+    this.handleAddTodo = this.handleAddTodo.bind(this);
   };
 
   handleAddTodo(text) {
-    alert('New Todo: ' + text)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuid(),
+          text: text
+        }
+      ]
+    });
   }
 
   handleSearch(showCompleted, searchText) {
