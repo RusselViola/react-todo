@@ -31,7 +31,15 @@ export default class Main extends Component {
   };
 
   handleAddTodo(text) {
-    alert('New Todo: ' + text)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: ,
+          text: text
+        }
+      ]
+    })
   }
 
   handleSearch(showCompleted, searchText) {
