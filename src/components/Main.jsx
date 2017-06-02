@@ -50,6 +50,10 @@ export default class Main extends Component {
     });
   }
 
+  handleToggle() {
+    alert(id);
+  }
+
   handleSearch(showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
@@ -63,7 +67,7 @@ export default class Main extends Component {
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch} />
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={this.handleToggle}/>
         <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
     )
