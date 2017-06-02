@@ -25549,7 +25549,7 @@
 	      }]
 	    };
 	    _this.handleAddTodo = _this.handleAddTodo.bind(_this);
-	    _this.handleToggle = _this.handleToggle.bind();
+	    _this.handleToggle = _this.handleToggle.bind(_this);
 	    return _this;
 	  }
 
@@ -25567,7 +25567,13 @@
 	  }, {
 	    key: 'handleToggle',
 	    value: function handleToggle(id) {
-	      alert(id);
+	      var updatedTodos = this.state.todos.map(function (todo) {
+	        if (todo.id === id) {
+	          todo.completed = !todo.completed;
+	        }
+	        return todo;
+	      });
+	      this.setState({ todos: updatedTodos });
 	    }
 	  }, {
 	    key: 'handleSearch',

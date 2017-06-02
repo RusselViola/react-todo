@@ -35,7 +35,7 @@ export default class Main extends Component {
       ]
     }
     this.handleAddTodo = this.handleAddTodo.bind(this);
-    this.handleToggle = this.handleToggle.bind()
+    this.handleToggle = this.handleToggle.bind(this);
   };
 
   handleAddTodo(text) {
@@ -52,7 +52,13 @@ export default class Main extends Component {
   }
 
   handleToggle(id) {
-    alert(id);
+    let updatedTodos = this.state.todos.map((todo) => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    })
+    this.setState({todos: updatedTodos});
   }
 
   handleSearch(showCompleted, searchText) {
