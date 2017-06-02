@@ -14,19 +14,23 @@ export default class Main extends Component {
       todos: [
         {
           id: uuid(),
-          text: 'Walk the dog'
+          text: 'Walk the dog',
+          completed: false
         },
         {
           id: uuid(),
-          text: 'Wash the car'
+          text: 'Wash the car',
+          completed: true
         },
         {
           id: uuid(),
-          text: 'Do the dishes'
+          text: 'Do the dishes',
+          completed: true
         },
         {
           id: uuid(),
-          text: 'Mow the lawn'
+          text: 'Mow the lawn',
+          completed: false
         }
       ]
     }
@@ -39,7 +43,8 @@ export default class Main extends Component {
         ...this.state.todos,
         {
           id: uuid(),
-          text: text
+          text: text,
+          completed: false
         }
       ]
     });

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 export default class Todo extends Component {
   render() {
-    let {text, id} = this.props;
+    let {text, id, completed} = this.props;
     return (
       <div>
-        {id}. {text}
+        <input type="checkbox" checked={completed}/>
+        {text}
       </div>
     )
   }
