@@ -25549,6 +25549,7 @@
 	      }]
 	    };
 	    _this.handleAddTodo = _this.handleAddTodo.bind(_this);
+	    _this.handleToggle = _this.handleToggle.bind();
 	    return _this;
 	  }
 
@@ -25562,6 +25563,11 @@
 	          completed: false
 	        }])
 	      });
+	    }
+	  }, {
+	    key: 'handleToggle',
+	    value: function handleToggle(id) {
+	      alert(id);
 	    }
 	  }, {
 	    key: 'handleSearch',
@@ -25581,7 +25587,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
-	        _react2.default.createElement(_TodoList2.default, { todos: todos }),
+	        _react2.default.createElement(_TodoList2.default, { todos: todos, onToggle: this.handleToggle }),
 	        _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
 	      );
 	    }
@@ -25634,11 +25640,13 @@
 	  _createClass(TodoList, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      var todos = this.props.todos;
 
 	      var renderTodos = function renderTodos() {
 	        return todos.map(function (todo) {
-	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
+	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo, { onToggle: _this2.props.onToggle }));
 	        });
 	      };
 	      return _react2.default.createElement(
@@ -25690,6 +25698,8 @@
 	  _createClass(Todo, [{
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      var _props = this.props,
 	          text = _props.text,
 	          id = _props.id,
@@ -25697,7 +25707,9 @@
 
 	      return _react2.default.createElement(
 	        "div",
-	        null,
+	        { onClick: function onClick() {
+	            _this2.props.onToggle(id);
+	          } },
 	        _react2.default.createElement("input", { type: "checkbox", checked: completed }),
 	        text
 	      );

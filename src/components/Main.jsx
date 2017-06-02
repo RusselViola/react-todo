@@ -35,6 +35,7 @@ export default class Main extends Component {
       ]
     }
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleToggle = this.handleToggle.bind()
   };
 
   handleAddTodo(text) {
@@ -50,7 +51,7 @@ export default class Main extends Component {
     });
   }
 
-  handleToggle() {
+  handleToggle(id) {
     alert(id);
   }
 
