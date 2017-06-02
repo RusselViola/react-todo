@@ -25532,19 +25532,24 @@
 	      searchText: '',
 	      todos: [{
 	        id: uuid(),
-	        text: 'Walk the dog'
+	        text: 'Walk the dog',
+	        completed: false
 	      }, {
 	        id: uuid(),
-	        text: 'Wash the car'
+	        text: 'Wash the car',
+	        completed: true
 	      }, {
 	        id: uuid(),
-	        text: 'Do the dishes'
+	        text: 'Do the dishes',
+	        completed: true
 	      }, {
 	        id: uuid(),
-	        text: 'Mow the lawn'
+	        text: 'Mow the lawn',
+	        completed: false
 	      }]
 	    };
 	    _this.handleAddTodo = _this.handleAddTodo.bind(_this);
+	    _this.handleToggle = _this.handleToggle.bind(_this);
 	    return _this;
 	  }
 
@@ -25554,9 +25559,21 @@
 	      this.setState({
 	        todos: [].concat(_toConsumableArray(this.state.todos), [{
 	          id: uuid(),
-	          text: text
+	          text: text,
+	          completed: false
 	        }])
 	      });
+	    }
+	  }, {
+	    key: 'handleToggle',
+	    value: function handleToggle(id) {
+	      var updatedTodos = this.state.todos.map(function (todo) {
+	        if (todo.id === id) {
+	          todo.completed = !todo.completed;
+	        }
+	        return todo;
+	      });
+	      this.setState({ todos: updatedTodos });
 	    }
 	  }, {
 	    key: 'handleSearch',
@@ -25576,7 +25593,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
-	        _react2.default.createElement(_TodoList2.default, { todos: todos }),
+	        _react2.default.createElement(_TodoList2.default, { todos: todos, onToggle: this.handleToggle }),
 	        _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
 	      );
 	    }
@@ -25629,11 +25646,13 @@
 	  _createClass(TodoList, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      var todos = this.props.todos;
 
 	      var renderTodos = function renderTodos() {
 	        return todos.map(function (todo) {
-	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
+	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo, { onToggle: _this2.props.onToggle }));
 	        });
 	      };
 	      return _react2.default.createElement(
@@ -25653,7 +25672,7 @@
 /* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25683,17 +25702,21 @@
 	  }
 
 	  _createClass(Todo, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      var _props = this.props,
 	          text = _props.text,
-	          id = _props.id;
+	          id = _props.id,
+	          completed = _props.completed;
 
 	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        id,
-	        '. ',
+	        "div",
+	        { onClick: function onClick() {
+	            _this2.props.onToggle(id);
+	          } },
+	        _react2.default.createElement("input", { type: "checkbox", checked: completed }),
 	        text
 	      );
 	    }

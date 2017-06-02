@@ -14,23 +14,28 @@ export default class Main extends Component {
       todos: [
         {
           id: uuid(),
-          text: 'Walk the dog'
+          text: 'Walk the dog',
+          completed: false
         },
         {
           id: uuid(),
-          text: 'Wash the car'
+          text: 'Wash the car',
+          completed: true
         },
         {
           id: uuid(),
-          text: 'Do the dishes'
+          text: 'Do the dishes',
+          completed: true
         },
         {
           id: uuid(),
-          text: 'Mow the lawn'
+          text: 'Mow the lawn',
+          completed: false
         }
       ]
     }
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   };
 
   handleAddTodo(text) {
@@ -39,10 +44,21 @@ export default class Main extends Component {
         ...this.state.todos,
         {
           id: uuid(),
-          text: text
+          text: text,
+          completed: false
         }
       ]
     });
+  }
+
+  handleToggle(id) {
+    let updatedTodos = this.state.todos.map((todo) => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    })
+    this.setState({todos: updatedTodos});
   }
 
   handleSearch(showCompleted, searchText) {
@@ -58,7 +74,7 @@ export default class Main extends Component {
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch} />
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={this.handleToggle}/>
         <AddTodo onAddTodo={this.handleAddTodo} />
       </div>
     )
