@@ -2,6 +2,10 @@ const expect = require('expect');
 const TodoAPI = require('TodoAPI');
 
 describe('TodoAPI', () => {
+  beforeEach(() => {
+    localStorage.removeItem('todos');
+  });
+
   it('should exist', () => {
     expect(TodoAPI).toExist();
   });
@@ -18,6 +22,13 @@ describe('TodoAPI', () => {
       let actualTodos = JSON.parse(localStorage.getItem('todos'));
 
       expect(actualTodos).toEqual(todos);
+    });
+
+    it('should not set invalid todos array', () => {
+      let badTodos = {a: 'b'};
+      TodoAPI.setTodos(badTodos);
+
+      expect(localStorage.getItem('todos')).toBe(null);
     });
   });
 
