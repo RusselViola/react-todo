@@ -33,6 +33,9 @@ describe('TodoAPI', () => {
   });
 
   describe('getTodos', () => {
-
+    it('should return empty array or bad localstorage data', () => {
+      let actualTodos = TodoAPI.getTodos();
+      expect(actualTodos).toEqual([]);
+    });
   });
 });
