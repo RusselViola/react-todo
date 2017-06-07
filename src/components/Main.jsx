@@ -16,6 +16,7 @@ export default class Main extends Component {
     }
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   };
 
   componentDidUpdate(){

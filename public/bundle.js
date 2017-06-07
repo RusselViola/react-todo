@@ -25535,6 +25535,7 @@
 	    };
 	    _this.handleAddTodo = _this.handleAddTodo.bind(_this);
 	    _this.handleToggle = _this.handleToggle.bind(_this);
+	    _this.handleSearch = _this.handleSearch.bind(_this);
 	    return _this;
 	  }
 
@@ -25898,6 +25899,15 @@
 	  },
 	  filterTodos: function filterTodos(todos, showCompleted, searchText) {
 	    var filteredTodos = todos;
+
+	    // filter by showCompleted
+	    filteredTodos = filteredTodos.filter(function (todo) {
+	      return !todo.completed || showCompleted;
+	    });
+
+	    // filter by searchText
+
+	    // sort todos with non-completed first
 
 	    return filteredTodos;
 	  }
