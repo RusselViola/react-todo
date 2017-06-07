@@ -61,7 +61,7 @@ describe('TodoAPI', () => {
     {
       id: 2,
       text: 'Other text here',
-      completed: true
+      completed: false
     },
     {
       id: 3,
@@ -73,6 +73,11 @@ describe('TodoAPI', () => {
       let filteredTodos = TodoAPI.filterTodos(todos, true, '');
 
       expect(filteredTodos.length).toBe(3);
+    });
+    it('should return non-completed todos when showCompleted is false', () => {
+      let filteredTodos = TodoAPI.filterTodos(todos, false, '');
+
+      expect(filteredTodos.length).toBe(1);
     });
   });
 });
