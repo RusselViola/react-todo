@@ -25576,14 +25576,18 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var todos = this.state.todos;
+	      var _state = this.state,
+	          todos = _state.todos,
+	          showCompleted = _state.showCompleted,
+	          searchText = _state.searchText;
 
+	      var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
-	        _react2.default.createElement(_TodoList2.default, { todos: todos, onToggle: this.handleToggle }),
+	        _react2.default.createElement(_TodoList2.default, { todos: filteredTodos, onToggle: this.handleToggle }),
 	        _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
 	      );
 	    }
@@ -25891,6 +25895,11 @@
 	    } catch (e) {}
 
 	    return $.isArray(todos) ? todos : [];
+	  },
+	  filterTodos: function filterTodos(todos, showCompleted, searchText) {
+	    var filteredTodos = todos;
+
+	    return filteredTodos;
 	  }
 	};
 
