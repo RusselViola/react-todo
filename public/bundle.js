@@ -25908,6 +25908,15 @@
 	    // filter by searchText
 
 	    // sort todos with non-completed first
+	    filteredTodos.sort(function (a, b) {
+	      if (a.completed && b.completed) {
+	        return -1;
+	      } else if (a.completed && !b.completed) {
+	        return 1;
+	      } else {
+	        return 0;
+	      }
+	    });
 
 	    return filteredTodos;
 	  }
