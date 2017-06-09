@@ -30,6 +30,7 @@ module.exports = {
     });
 
     // filter by searchText
+    
 
     // sort todos with non-completed first
     filteredTodos.sort((a, b) => {
