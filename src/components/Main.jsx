@@ -3,8 +3,9 @@ import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
-const TodoAPI = require('todoAPI')
+const TodoAPI = require('todoAPI');
 const uuid = require('node-uuid');
+const moment = require('moment');
 
 export default class Main extends Component {
   constructor(props) {
@@ -30,7 +31,9 @@ export default class Main extends Component {
         {
           id: uuid(),
           text: text,
-          completed: false
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: undefined
         }
       ]
     });
@@ -40,6 +43,7 @@ export default class Main extends Component {
     let updatedTodos = this.state.todos.map((todo) => {
       if(todo.id === id) {
         todo.completed = !todo.completed;
+        todo.completedAt = todo.completed ? moment().unix() : undefined;
       }
       return todo;
     })
