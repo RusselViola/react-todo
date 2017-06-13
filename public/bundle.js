@@ -25553,7 +25553,8 @@
 	          id: uuid(),
 	          text: text,
 	          completed: false,
-	          createdAt: moment().unix()
+	          createdAt: moment().unix(),
+	          completedAt: undefined
 	        }])
 	      });
 	    }
@@ -25563,6 +25564,7 @@
 	      var updatedTodos = this.state.todos.map(function (todo) {
 	        if (todo.id === id) {
 	          todo.completed = !todo.completed;
+	          todo.completedAt = todo.completed ? moment().unix() : undefined;
 	        }
 	        return todo;
 	      });
@@ -25709,11 +25711,17 @@
 	          text = _props.text,
 	          id = _props.id,
 	          completed = _props.completed,
-	          createdAt = _props.createdAt;
+	          createdAt = _props.createdAt,
+	          completedAt = _props.completedAt;
 
 	      var renderDate = function renderDate() {
 	        var message = 'Created: ';
 	        var timeStamp = createdAt;
+
+	        if (completed) {
+	          message = 'Completed: ';
+	          timeStamp = completedAt;
+	        }
 
 	        return message + moment.unix(timeStamp).format('MMM Do YYYY @ h:mm a');
 	      };
