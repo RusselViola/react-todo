@@ -3,8 +3,9 @@ import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
-const TodoAPI = require('todoAPI')
+const TodoAPI = require('todoAPI');
 const uuid = require('node-uuid');
+const moment = require('moment');
 
 export default class Main extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ export default class Main extends Component {
         {
           id: uuid(),
           text: text,
-          completed: false
+          completed: false,
+          createdAt: moment().unix()
         }
       ]
     });
