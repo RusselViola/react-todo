@@ -38925,7 +38925,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'container__footer' },
 	        _react2.default.createElement(
 	          'form',
 	          { onSubmit: this.handleSubmit },
@@ -38995,7 +38995,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        null,
+	        { className: "container__header" },
 	        _react2.default.createElement(
 	          "div",
 	          null,
