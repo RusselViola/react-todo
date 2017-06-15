@@ -25591,9 +25591,26 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
-	        _react2.default.createElement(_TodoList2.default, { todos: filteredTodos, onToggle: this.handleToggle }),
-	        _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'page-title' },
+	          'Todo App'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'column small-centered small-11 medium-6 large-5' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'container ' },
+	              _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
+	              _react2.default.createElement(_TodoList2.default, { todos: filteredTodos, onToggle: this.handleToggle }),
+	              _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
