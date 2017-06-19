@@ -25667,6 +25667,13 @@
 	      var todos = this.props.todos;
 
 	      var renderTodos = function renderTodos() {
+	        if (todos.length === 0) {
+	          return _react2.default.createElement(
+	            'p',
+	            { className: 'container__message' },
+	            'There\'s nothing to do!'
+	          );
+	        }
 	        return todos.map(function (todo) {
 	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo, { onToggle: _this2.props.onToggle }));
 	        });
