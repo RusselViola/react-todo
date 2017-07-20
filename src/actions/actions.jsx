@@ -5,6 +5,12 @@ export const setSearchText = (searchText) => {
   }
 };
 
+export const toggleShowCompleted = () => {
+  return {
+    type: 'TOGGLE_SHOW_COMPLETED'
+  }
+};
+
 export const addTodo = (text) => {
   return {
     type: 'ADD_TODO',

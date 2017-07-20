@@ -12,6 +12,15 @@ describe('Actions', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate toggle show completed action', () => {
+    let action = {
+      type: 'TOGGLE_SHOW_COMPLETED'
+    };
+    let res = actions.toggleShowCompleted();
+
+    expect(res).toEqual(action);
+  });
+
   it('should generate add todo action', () => {
     let action = {
       type: 'ADD_TODO',
