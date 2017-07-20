@@ -11,4 +11,14 @@ describe('Actions', () => {
 
     expect(res).toEqual(action);
   });
+
+  it('should generate add todo action', () => {
+    let action = {
+      type: 'ADD_TODO',
+      text: 'Thing to do'
+    };
+    let res = actions.addTodo(action.text);
+
+    expect(res).toEqual(action);
+  });
 });
