@@ -13,4 +13,14 @@ describe('Reducers', () => {
       expect(res).toEqual(action.searchText);
     });
   });
+  describe('showCompletedReducer', () => {
+    it('should toggle showCompleted', () => {
+      let action = {
+        type: 'TOGGLE_SHOW_COMPLETED'
+      };
+      let res = reducers.showCompletedReducer(false, action);
+
+      expect(res).toEqual(true);
+    });
+  });
 });
