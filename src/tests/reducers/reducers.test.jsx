@@ -1,5 +1,6 @@
 const expect = require('expect');
 const  reducers = require('reducers');
+const df = require('deep-freeze-strict');
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {
@@ -8,7 +9,7 @@ describe('Reducers', () => {
         type: 'SET_SEARCH_TEXT',
         searchText: 'dog'
       };
-      let res = reducers.searchTextReducer('', action);
+      let res = reducers.searchTextReducer(df(''), df(action));
 
       expect(res).toEqual(action.searchText);
     });
@@ -18,7 +19,7 @@ describe('Reducers', () => {
       let action = {
         type: 'TOGGLE_SHOW_COMPLETED'
       };
-      let res = reducers.showCompletedReducer(false, action);
+      let res = reducers.showCompletedReducer(df(false), df(action));
 
       expect(res).toEqual(true);
     });
