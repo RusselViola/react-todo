@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, IndexRoute, hashHistory } from 'react-router';
+import { Provider } from 'react-redux';
 import Main from 'Main';
 
 const actions = require('actions');
@@ -24,6 +25,8 @@ console.log(process.env.ENV_TEST)
 
 ReactDOM.render(
   //Router
-  <Main/>,
+  <Provider store={store}>
+    <Main/>
+  </Provider>,
   document.getElementById('app')
 );
