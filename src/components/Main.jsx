@@ -16,7 +16,6 @@ export default class Main extends Component {
       todos: TodoAPI.getTodos()
     }
     this.handleAddTodo = this.handleAddTodo.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   };
 
@@ -39,17 +38,6 @@ export default class Main extends Component {
     });
   }
 
-  handleToggle(id) {
-    let updatedTodos = this.state.todos.map((todo) => {
-      if(todo.id === id) {
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
-      }
-      return todo;
-    })
-    this.setState({todos: updatedTodos});
-  }
-
   handleSearch(showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
@@ -69,7 +57,7 @@ export default class Main extends Component {
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container ">
               <TodoSearch onSearch={this.handleSearch} />
-              <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+              <TodoList/>
               <AddTodo onAddTodo={this.handleAddTodo} />
             </div>
           </div>
