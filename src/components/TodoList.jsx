@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Todo from 'Todo';
+const {Todo} = require('Todo');
 
 class TodoList extends Component {
 
@@ -28,9 +28,9 @@ class TodoList extends Component {
   }
 }
 module.exports = connect(
-  (state => {
+  (state) => {
     return {
       todos: state.todos
     }
-  })
+  }
 )(TodoList);

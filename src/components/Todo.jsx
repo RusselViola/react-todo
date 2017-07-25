@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
+const {connect} = require('react-redux');
 const actions = require('actions');
-
 const moment = require('moment');
 
-class Todo extends Component {
+export class Todo extends Component {
   render() {
     let {text, id, completed, createdAt, completedAt, dispatch} = this.props;
     let todoClassName = completed ? 'todo todo-completed' : 'todo';
@@ -36,4 +35,5 @@ class Todo extends Component {
     )
   }
 }
-module.exports = connect()(Todo);
+
+export default connect()(Todo);
