@@ -1,6 +1,6 @@
+const redux = require('redux');
 const {searchTextReducer, showCompletedReducer, todosReducer} = require('reducers');
 
-const redux = require('redux');
 
 export const configure = () => {
   let reducer = redux.combineReducers({

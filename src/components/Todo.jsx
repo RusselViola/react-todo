@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-const {connect} = require('react-redux');
+const { connect } = require('react-redux');
 const actions = require('actions');
 const moment = require('moment');
 

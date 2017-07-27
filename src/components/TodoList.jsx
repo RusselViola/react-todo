@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-const {Todo} = require('Todo');
+import Todo from 'Todo';
+const { connect } = require('react-redux');
 
-class TodoList extends Component {
+export class TodoList extends Component {
 
   render() {
     let {todos} = this.props;
@@ -26,8 +26,9 @@ class TodoList extends Component {
       </div>
     )
   }
-}
-module.exports = connect(
+};
+
+export default connect(
   (state) => {
     return {
       todos: state.todos
