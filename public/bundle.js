@@ -40321,6 +40321,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.AddTodo = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -40336,28 +40337,35 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Todo = function (_Component) {
-	  _inherits(Todo, _Component);
+	var _require = __webpack_require__(229),
+	    connect = _require.connect;
 
-	  function Todo(props) {
-	    _classCallCheck(this, Todo);
+	var actions = __webpack_require__(255);
 
-	    var _this = _possibleConstructorReturn(this, (Todo.__proto__ || Object.getPrototypeOf(Todo)).call(this, props));
+	var AddTodo = exports.AddTodo = function (_Component) {
+	  _inherits(AddTodo, _Component);
+
+	  function AddTodo(props) {
+	    _classCallCheck(this, AddTodo);
+
+	    var _this = _possibleConstructorReturn(this, (AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).call(this, props));
 
 	    _this.state = {};
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(Todo, [{
+	  _createClass(AddTodo, [{
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
+	      var dispatch = this.props.dispatch;
+
 	      var todoText = this.refs.todoText.value;
 
 	      if (todoText.length > 0) {
 	        this.refs.todoText.value = '';
-	        this.props.onAddTodo(todoText);
+	        dispatch(actions.addTodo(todoText));
 	      } else {
 	        this.refs.todoText.focus();
 	      }
@@ -40382,10 +40390,12 @@
 	    }
 	  }]);
 
-	  return Todo;
+	  return AddTodo;
 	}(_react.Component);
 
-	exports.default = Todo;
+	;
+
+	exports.default = connect()(AddTodo);
 
 /***/ }),
 /* 357 */
@@ -48929,13 +48939,15 @@
 	    todosReducer = _require.todosReducer;
 
 	var configure = exports.configure = function configure() {
+	  var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
 	  var reducer = redux.combineReducers({
 	    searchText: searchTextReducer,
 	    showCompleted: showCompletedReducer,
 	    todos: todosReducer
 	  });
 
-	  var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  var store = redux.createStore(reducer, initialState, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
 	    return f;
 	  }));
 
@@ -49005,6 +49017,8 @@
 	            completed: nextCompleted,
 	            completedAt: nextCompleted ? moment().unix() : undefined
 	          });
+	        } else {
+	          return todo;
 	        }
 	      });
 	    default:

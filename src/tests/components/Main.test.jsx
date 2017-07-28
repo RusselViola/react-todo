@@ -10,17 +10,6 @@ const expect = require('expect');
 const $ = require('jQuery');
 const TestUtils = require('react-addons-test-utils');
 
-class Wrapper extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Main {...this.props}/>
-      </Provider>
-
-    )
-  }
-}
-
 describe('Main', () => {
   it('should exist', () => {
     expect(Main).toExist();
