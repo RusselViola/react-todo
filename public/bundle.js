@@ -26889,11 +26889,11 @@
 
 	var _TodoList2 = _interopRequireDefault(_TodoList);
 
-	var _AddTodo = __webpack_require__(356);
+	var _AddTodo = __webpack_require__(357);
 
 	var _AddTodo2 = _interopRequireDefault(_AddTodo);
 
-	var _TodoSearch = __webpack_require__(357);
+	var _TodoSearch = __webpack_require__(358);
 
 	var _TodoSearch2 = _interopRequireDefault(_TodoSearch);
 
@@ -26907,7 +26907,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var TodoAPI = __webpack_require__(358);
+	var TodoAPI = __webpack_require__(356);
 	var uuid = __webpack_require__(359);
 	var moment = __webpack_require__(256);
 
@@ -27031,6 +27031,8 @@
 	var _require = __webpack_require__(229),
 	    connect = _require.connect;
 
+	var TodoAPI = __webpack_require__(356);
+
 	var TodoList = exports.TodoList = function (_Component) {
 	  _inherits(TodoList, _Component);
 
@@ -27043,7 +27045,10 @@
 	  _createClass(TodoList, [{
 	    key: 'render',
 	    value: function render() {
-	      var todos = this.props.todos;
+	      var _props = this.props,
+	          todos = _props.todos,
+	          showCompleted = _props.showCompleted,
+	          searchText = _props.searchText;
 
 	      var renderTodos = function renderTodos() {
 	        if (todos.length === 0) {
@@ -27053,7 +27058,7 @@
 	            'There\'s nothing to do!'
 	          );
 	        }
-	        return todos.map(function (todo) {
+	        return TodoAPI.filterTodos(todos, showCompleted, searchText).map(function (todo) {
 	          return _react2.default.createElement(_Todo2.default, _extends({ key: todo.id }, todo));
 	        });
 	      };
@@ -27071,9 +27076,7 @@
 	;
 
 	exports.default = connect(function (state) {
-	  return {
-	    todos: state.todos
-	  };
+	  return state;
 	})(TodoList);
 
 /***/ }),
@@ -40318,6 +40321,61 @@
 
 	'use strict';
 
+	var $ = __webpack_require__(7);
+
+	module.exports = {
+	  setTodos: function setTodos(todos) {
+	    if ($.isArray(todos)) {
+	      localStorage.setItem('todos', JSON.stringify(todos));
+	      return todos;
+	    }
+	  },
+	  getTodos: function getTodos() {
+	    var stringTodos = localStorage.getItem('todos');
+	    var todos = [];
+
+	    try {
+	      todos = JSON.parse(stringTodos);
+	    } catch (e) {}
+
+	    return $.isArray(todos) ? todos : [];
+	  },
+	  filterTodos: function filterTodos(todos, showCompleted, searchText) {
+	    var filteredTodos = todos;
+
+	    // filter by showCompleted
+	    filteredTodos = filteredTodos.filter(function (todo) {
+	      return !todo.completed || showCompleted;
+	    });
+
+	    // filter by searchText
+	    filteredTodos = filteredTodos.filter(function (todo) {
+	      var text = todo.text.toLowerCase();
+	      searchText = searchText.toLowerCase();
+	      return searchText.length === 0 || text.indexOf(searchText) > -1;
+	    });
+
+	    // sort todos with non-completed first
+	    filteredTodos.sort(function (a, b) {
+	      if (a.completed && b.completed) {
+	        return -1;
+	      } else if (a.completed && !b.completed) {
+	        return 1;
+	      } else {
+	        return 0;
+	      }
+	    });
+
+	    return filteredTodos;
+	  }
+	};
+
+/***/ }),
+/* 357 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
@@ -40398,14 +40456,15 @@
 	exports.default = connect()(AddTodo);
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.TodoSearch = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -40421,7 +40480,12 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var TodoSearch = function (_Component) {
+	var _require = __webpack_require__(229),
+	    connect = _require.connect;
+
+	var actions = __webpack_require__(255);
+
+	var TodoSearch = exports.TodoSearch = function (_Component) {
 	  _inherits(TodoSearch, _Component);
 
 	  function TodoSearch(props) {
@@ -40430,37 +40494,40 @@
 	    var _this = _possibleConstructorReturn(this, (TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call(this, props));
 
 	    _this.state = {};
-	    _this.handleSearch = _this.handleSearch.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(TodoSearch, [{
-	    key: "handleSearch",
-	    value: function handleSearch() {
-	      var showCompleted = this.refs.showCompleted.checked;
-	      var searchText = this.refs.searchText.value;
-
-	      this.props.onSearch(showCompleted, searchText);
-	    }
-	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props,
+	          dispatch = _props.dispatch,
+	          showCompleted = _props.showCompleted,
+	          searchText = _props.searchText;
+
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "container__header" },
+	        'div',
+	        { className: 'container__header' },
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
-	          _react2.default.createElement("input", { type: "search", ref: "searchText", placeholder: "Search todos", onChange: this.handleSearch })
+	          _react2.default.createElement('input', { type: 'search', ref: 'searchText', placeholder: 'Search todos', value: searchText, onChange: function onChange() {
+	              var searchText = _this2.refs.searchText.value;
+	              dispatch(actions.setSearchText(searchText));
+	            } })
 	        ),
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
 	          _react2.default.createElement(
-	            "label",
+	            'label',
 	            null,
-	            _react2.default.createElement("input", { type: "checkbox", ref: "showCompleted", onChange: this.handleSearch }),
-	            "Show completed todos"
+	            _react2.default.createElement('input', { type: 'checkbox', ref: 'showCompleted', checked: showCompleted, onChange: function onChange() {
+	                dispatch(actions.toggleShowCompleted());
+	              } }),
+	            'Show completed todos'
 	          )
 	        )
 	      );
@@ -40470,61 +40537,12 @@
 	  return TodoSearch;
 	}(_react.Component);
 
-	exports.default = TodoSearch;
-
-/***/ }),
-/* 358 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var $ = __webpack_require__(7);
-
-	module.exports = {
-	  setTodos: function setTodos(todos) {
-	    if ($.isArray(todos)) {
-	      localStorage.setItem('todos', JSON.stringify(todos));
-	      return todos;
-	    }
-	  },
-	  getTodos: function getTodos() {
-	    var stringTodos = localStorage.getItem('todos');
-	    var todos = [];
-
-	    try {
-	      todos = JSON.parse(stringTodos);
-	    } catch (e) {}
-
-	    return $.isArray(todos) ? todos : [];
-	  },
-	  filterTodos: function filterTodos(todos, showCompleted, searchText) {
-	    var filteredTodos = todos;
-
-	    // filter by showCompleted
-	    filteredTodos = filteredTodos.filter(function (todo) {
-	      return !todo.completed || showCompleted;
-	    });
-
-	    // filter by searchText
-	    filteredTodos = filteredTodos.filter(function (todo) {
-	      var text = todo.text.toLowerCase();
-	      return searchText.length === 0 || text.indexOf(searchText) > -1;
-	    });
-
-	    // sort todos with non-completed first
-	    filteredTodos.sort(function (a, b) {
-	      if (a.completed && b.completed) {
-	        return -1;
-	      } else if (a.completed && !b.completed) {
-	        return 1;
-	      } else {
-	        return 0;
-	      }
-	    });
-
-	    return filteredTodos;
-	  }
-	};
+	exports.default = connect(function (state) {
+	  return {
+	    showCompleted: state.showCompleted,
+	    searchText: state.searchText
+	  };
+	})(TodoSearch);
 
 /***/ }),
 /* 359 */

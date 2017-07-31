@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Todo from 'Todo';
-const { connect } = require('react-redux');
+const {connect} = require('react-redux');
+const TodoAPI = require('TodoAPI');
 
 export class TodoList extends Component {
 
   render() {
-    let {todos} = this.props;
+    let {todos, showCompleted, searchText} = this.props;
     let renderTodos = () => {
       if(todos.length === 0) {
         return(
@@ -13,7 +14,7 @@ export class TodoList extends Component {
         )
       }
       return(
-        todos.map((todo) => {
+        TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
           return(
             <Todo key={todo.id} {...todo}/>
           )
@@ -30,8 +31,6 @@ export class TodoList extends Component {
 
 export default connect(
   (state) => {
-    return {
-      todos: state.todos
-    }
+    return state;
   }
 )(TodoList);

@@ -3,7 +3,7 @@ import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
-const TodoAPI = require('todoAPI');
+const TodoAPI = require('TodoAPI');
 const uuid = require('node-uuid');
 const moment = require('moment');
 
