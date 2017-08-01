@@ -114,14 +114,22 @@
 
 	var actions = __webpack_require__(255);
 	var store = __webpack_require__(420).configure();
+	var TodoAPI = __webpack_require__(356);
 
 	store.subscribe(function () {
-	  console.log('New state:', store.getState());
+	  var state = store.getState();
+
+	  console.log('New state:', state);
+
+	  TodoAPI.setTodos(state.todos);
 	});
 
-	store.dispatch(actions.addTodo('Clean the yard'));
-	store.dispatch(actions.setSearchText('yard'));
-	store.dispatch(actions.toggleShowCompleted(''));
+	var initialTodos = TodoAPI.getTodos();
+	store.dispatch(actions.addTodos(initialTodos));
+
+	// store.dispatch(actions.addTodo('Clean the yard'));
+	// store.dispatch(actions.setSearchText('yard'));
+	// store.dispatch(actions.toggleShowCompleted(''));
 
 	//load foundation
 	$(document).foundation();
@@ -26899,71 +26907,64 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var TodoAPI = __webpack_require__(356);
+	// const TodoAPI = require('TodoAPI');
 	var uuid = __webpack_require__(359);
 	var moment = __webpack_require__(256);
 
 	var Main = function (_Component) {
 	  _inherits(Main, _Component);
 
-	  function Main(props) {
+	  function Main() {
 	    _classCallCheck(this, Main);
 
-	    var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-	    _this.state = {
-	      showCompleted: false,
-	      searchText: '',
-	      todos: TodoAPI.getTodos()
-	    };
-	    _this.handleAddTodo = _this.handleAddTodo.bind(_this);
-	    _this.handleSearch = _this.handleSearch.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
 	  }
 
 	  _createClass(Main, [{
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      TodoAPI.setTodos(this.state.todos);
-	    }
-	  }, {
-	    key: 'handleAddTodo',
-	    value: function handleAddTodo(text) {
-	      this.setState({
-	        todos: [].concat(_toConsumableArray(this.state.todos), [{
-	          id: uuid(),
-	          text: text,
-	          completed: false,
-	          createdAt: moment().unix(),
-	          completedAt: undefined
-	        }])
-	      });
-	    }
-	  }, {
-	    key: 'handleSearch',
-	    value: function handleSearch(showCompleted, searchText) {
-	      this.setState({
-	        showCompleted: showCompleted,
-	        searchText: searchText.toLowerCase()
-	      });
-	    }
-	  }, {
 	    key: 'render',
-	    value: function render() {
-	      var _state = this.state,
-	          todos = _state.todos,
-	          showCompleted = _state.showCompleted,
-	          searchText = _state.searchText;
 
-	      var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+	    // constructor(props) {
+	    //   super(props);
+	    //   this.state = {
+	    //     // showCompleted: false,
+	    //     // searchText: '',
+	    //     // todos: TodoAPI.getTodos()
+	    //   }
+	    //   this.handleAddTodo = this.handleAddTodo.bind(this);
+	    //   this.handleSearch = this.handleSearch.bind(this);
+	    // };
+
+	    // handleAddTodo(text) {
+	    //   this.setState({
+	    //     todos: [
+	    //       ...this.state.todos,
+	    //       {
+	    //         id: uuid(),
+	    //         text: text,
+	    //         completed: false,
+	    //         createdAt: moment().unix(),
+	    //         completedAt: undefined
+	    //       }
+	    //     ]
+	    //   });
+	    // }
+
+	    // handleSearch(showCompleted, searchText) {
+	    //   this.setState({
+	    //     showCompleted: showCompleted,
+	    //     searchText: searchText.toLowerCase()
+	    //   })
+	    // }
+
+	    value: function render() {
+	      // let {todos, showCompleted, searchText} = this.state;
+	      // let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
 	      return _react2.default.createElement(
 	        'div',
@@ -26982,9 +26983,9 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'container ' },
-	              _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
+	              _react2.default.createElement(_TodoSearch2.default, null),
 	              _react2.default.createElement(_TodoList2.default, null),
-	              _react2.default.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
+	              _react2.default.createElement(_AddTodo2.default, null)
 	            )
 	          )
 	        )
@@ -27205,6 +27206,12 @@
 	  };
 	};
 
+	var addTodos = exports.addTodos = function addTodos(todos) {
+	  return {
+	    type: 'ADD_TODOS',
+	    todos: todos
+	  };
+	};
 	var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
 	  return {
 	    type: 'TOGGLE_TODO',
@@ -49039,6 +49046,8 @@
 	          return todo;
 	        }
 	      });
+	    case 'ADD_TODOS':
+	      return [].concat(_toConsumableArray(state), _toConsumableArray(action.todos));
 	    default:
 	      return state;
 	  }
