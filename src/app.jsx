@@ -7,6 +7,8 @@ import Main from 'Main';
 const actions = require('actions');
 const store = require('configureStore').configure();
 
+import './../playground/firebase/index';
+
 store.subscribe(() => {
   console.log('New state:', store.getState());
 });

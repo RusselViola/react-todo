@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     new Dotenv({
-      path: '.env'
+      path: './.env'
     }),
     new Webpack.ProvidePlugin({
       '$': 'jquery',
