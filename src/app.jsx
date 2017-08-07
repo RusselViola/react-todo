@@ -4,6 +4,8 @@ import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import Main from 'Main';
 
+import './../playground/firebase/index'
+
 const actions = require('actions');
 const store = require('configureStore').configure();
 const TodoAPI = require('TodoAPI');
