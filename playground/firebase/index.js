@@ -11,13 +11,24 @@ import firebase from 'firebase';
   };
   firebase.initializeApp(config);
 
-  firebase.database().ref().set({
-    appName: 'asdfasdsdf',
+  let firebaseRef = firebase.database().ref();
+
+  firebaseRef.set({
+    app: {
+      name: 'Todo App',
+      version: '1.0.0'
+    },
     isRunning: true,
     user: {
       name: 'Russel',
       age: 29
     }
+  }).then(() => {
+    console.log('Set worked!');
+  }, (e) => {
+    console.log('Set Failed!');
   });
 
-  console.log('FARTS');
+  firebaseRef.child('app').set({
+    name: 'Todo App'
+  });
