@@ -11,8 +11,13 @@ import firebase from 'firebase';
   };
   firebase.initializeApp(config);
 
-  firebase.database().ref().set({
-    appName: 'asdfasdsdf',
+  let firebaseRef = firebase.database().ref();
+
+  firebaseRef.set({
+    app: {
+      name: 'Todo App',
+      version: '1.0.0'
+    },
     isRunning: true,
     user: {
       name: 'Russel',
@@ -20,4 +25,30 @@ import firebase from 'firebase';
     }
   });
 
-  console.log('FARTS');
+  firebaseRef.update({
+    isRunning: false,
+    'app/name': 'Todo Application'
+  });
+
+  firebaseRef.child('app').update({
+    name: 'Todo Application'
+  }).then(() => {
+    console.log('Update Worked');
+  }, (e) => {
+    console.log('Update Failed');
+  });
+  // OR This
+  firebaseRef.update({
+    'user/name': 'Mr. Poopy Butthole',
+    'app/name': 'Todo Application'
+  });
+  // OR This
+  firebaseRef.child('app').update({ name: 'Tododododo'});
+  firebaseRef.child('user').update({ name: 'RICK'});
+
+  firebaseRef.child('app/name').remove();
+  // OR This
+  firebaseRef.child('app').update({
+    version: '2.0',
+    name: null
+  });
