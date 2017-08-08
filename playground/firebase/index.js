@@ -30,18 +30,25 @@ import firebase from 'firebase';
     'app/name': 'Todo Application'
   });
 
-  // firebaseRef.child('app').update({
-  //   name: 'Todo Application'
-  // }).then(() => {
-  //   console.log('Update Worked');
-  // }, (e) => {
-  //   console.log('Update Failed');
-  // });
-
+  firebaseRef.child('app').update({
+    name: 'Todo Application'
+  }).then(() => {
+    console.log('Update Worked');
+  }, (e) => {
+    console.log('Update Failed');
+  });
+  // OR This
   firebaseRef.update({
     'user/name': 'Mr. Poopy Butthole',
     'app/name': 'Todo Application'
   });
-
+  // OR This
   firebaseRef.child('app').update({ name: 'Tododododo'});
   firebaseRef.child('user').update({ name: 'RICK'});
+
+  firebaseRef.child('app/name').remove();
+  // OR This
+  firebaseRef.child('app').update({
+    version: '2.0',
+    name: null
+  });
