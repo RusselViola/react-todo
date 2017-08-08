@@ -23,12 +23,25 @@ import firebase from 'firebase';
       name: 'Russel',
       age: 29
     }
-  }).then(() => {
-    console.log('Set worked!');
-  }, (e) => {
-    console.log('Set Failed!');
   });
 
-  firebaseRef.child('app').set({
-    name: 'Todo App'
+  firebaseRef.update({
+    isRunning: false,
+    'app/name': 'Todo Application'
   });
+
+  // firebaseRef.child('app').update({
+  //   name: 'Todo Application'
+  // }).then(() => {
+  //   console.log('Update Worked');
+  // }, (e) => {
+  //   console.log('Update Failed');
+  // });
+
+  firebaseRef.update({
+    'user/name': 'Mr. Poopy Butthole',
+    'app/name': 'Todo Application'
+  });
+
+  firebaseRef.child('app').update({ name: 'Tododododo'});
+  firebaseRef.child('user').update({ name: 'RICK'});
