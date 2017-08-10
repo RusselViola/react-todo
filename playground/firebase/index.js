@@ -25,30 +25,10 @@ import firebase from 'firebase';
     }
   });
 
-  firebaseRef.update({
-    isRunning: false,
-    'app/name': 'Todo Application'
+  firebaseRef.child('user').on('value', (snapshot) => {
+    console.log('User ref changed', snapshot.val());
   });
 
-  firebaseRef.child('app').update({
-    name: 'Todo Application'
-  }).then(() => {
-    console.log('Update Worked');
-  }, (e) => {
-    console.log('Update Failed');
-  });
-  // OR This
-  firebaseRef.update({
-    'user/name': 'Mr. Poopy Butthole',
-    'app/name': 'Todo Application'
-  });
-  // OR This
-  firebaseRef.child('app').update({ name: 'Tododododo'});
-  firebaseRef.child('user').update({ name: 'RICK'});
+  firebaseRef.child('user').update({name: 'Mike'});
 
-  firebaseRef.child('app/name').remove();
-  // OR This
-  firebaseRef.child('app').update({
-    version: '2.0',
-    name: null
-  });
+  firebaseRef.child('app').update({name: 'Something else'});
