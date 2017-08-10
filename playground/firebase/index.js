@@ -25,10 +25,32 @@ import firebase from 'firebase';
     }
   });
 
-  firebaseRef.child('user').on('value', (snapshot) => {
-    console.log('User ref changed', snapshot.val());
+  let notesRef = firebaseRef.child('notes');
+
+  notesRef.on('child_added', (snapshot) => {
+    console.log('child_added', snapshot.key, snapshot.val());
+  });
+  notesRef.on('child_changed', (snapshot) => {
+    console.log('child_changed', snapshot.key, snapshot.val());
+  });
+  notesRef.on('child_removed', (snapshot) => {
+    console.log('child_removed', snapshot.key, snapshot.val());
   });
 
-  firebaseRef.child('user').update({name: 'Mike'});
+  let newNoteRef = notesRef.push({
+    text: 'Walk the dog!'
+  });
+  console.log('Todo id', newNoteRef.key);
 
-  firebaseRef.child('app').update({name: 'Something else'});
+  let todosRef = firebaseRef.child('todos');
+
+  todosRef.on('child_added', (snapshot) => {
+    console.log('New todo added', snapshot.key, snapshot.val());
+  });
+
+  todosRef.push({
+    text: 'Todo 1'
+  });
+  todosRef.push({
+    text: 'Todo 2'
+  });
