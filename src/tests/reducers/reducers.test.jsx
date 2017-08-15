@@ -1,5 +1,5 @@
 const expect = require('expect');
-const  reducers = require('reducers');
+const reducers = require('reducers');
 const df = require('deep-freeze-strict');
 
 describe('Reducers', () => {
