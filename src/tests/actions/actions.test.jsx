@@ -74,12 +74,13 @@ describe('Actions', () => {
     }).catch(done);
   });
 
-  it('should generate toggle todo action', () => {
+  it('should generate update todo action', () => {
     let action = {
-      type: 'TOGGLE_TODO',
-      id: '123'
+      type: 'UPDATE_TODO',
+      id: '123',
+      updates: {completed: false}
     };
-    let res = actions.toggleTodo(action.id);
+    let res = actions.updateTodo(action.id, action.updates);
 
     expect(res).toEqual(action);
   });
