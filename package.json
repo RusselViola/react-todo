@@ -4,7 +4,8 @@
   "description": "Task Tracking with React!",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
