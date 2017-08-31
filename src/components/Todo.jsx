@@ -23,7 +23,7 @@ export class Todo extends Component {
         dispatch(actions.startToggleTodo(id, !completed));
       }}>
         <div>
-          <input type="checkbox" checked={completed}/>
+          <input type="checkbox" checked={completed} onChange={() => {}}/>
         </div>
         <div>
           <p>{text}</p>
