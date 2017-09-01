@@ -1,6 +1,8 @@
 const Dotenv = require('dotenv-webpack');
-const Webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
   entry: [
@@ -19,9 +21,14 @@ module.exports = {
     new Dotenv({
       path: './.env'
     }),
-    new Webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
     })
   ],
   resolve: {
@@ -54,5 +61,5 @@ module.exports = {
       path.resolve(__dirname, './node_modules/foundation-sites/scss')
     ]
   },
-  devtools: 'cheap-module-eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };

@@ -47,7 +47,7 @@ export default class Main extends Component {
 
     return (
       <div>
-        <h1 className="page-title">Todo App</h1>
+        <h1 className="page-title">TodoDux</h1>
 
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
