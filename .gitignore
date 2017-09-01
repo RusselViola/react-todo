@@ -58,3 +58,6 @@ typings/
 .env
 
 public/bundle.js
+
+# don't add new config folder to dev, test, or production environment.
+config/
