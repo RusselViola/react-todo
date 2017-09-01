@@ -2,9 +2,6 @@ import firebase from 'firebase';
 
 // Initialize Firebase
 
-console.log("NODE_ENV",process.env.NODE_ENV);
-console.log("API_KEY",process.env.APP_KEY);
-
 try {
   var config = {
     apiKey: process.env.API_KEY,
