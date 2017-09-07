@@ -47,6 +47,9 @@ export default class Main extends Component {
 
     return (
       <div>
+        <div className="page-actions">
+          <a href="#">Logout</a>
+        </div>
         <h1 className="page-title">TodoDux</h1>
 
         <div className="row">
