@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, Router, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import Main from 'Main';
+import Login from 'Login';
 
 const actions = require('actions');
 const store = require('configureStore').configure();
@@ -21,7 +22,12 @@ console.log(process.env.ENV_TEST)
 ReactDOM.render(
   //Router
   <Provider store={store}>
-    <Main/>
+    <Router history={hashHistory}>
+      <Route path="/">
+        <Route path="todos" component={Main}/>
+        <IndexRoute component={Login}/>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );
