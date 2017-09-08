@@ -1,54 +1,23 @@
 import React, { Component } from 'react';
+import * as Redux from 'react-redux';
+
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
+import * as actions from 'actions';
 
-// const TodoAPI = require('TodoAPI');
-const uuid = require('node-uuid');
-const moment = require('moment');
-
-export default class Main extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     // showCompleted: false,
-  //     // searchText: '',
-  //     // todos: TodoAPI.getTodos()
-  //   }
-  //   this.handleAddTodo = this.handleAddTodo.bind(this);
-  //   this.handleSearch = this.handleSearch.bind(this);
-  // };
-
-  // handleAddTodo(text) {
-  //   this.setState({
-  //     todos: [
-  //       ...this.state.todos,
-  //       {
-  //         id: uuid(),
-  //         text: text,
-  //         completed: false,
-  //         createdAt: moment().unix(),
-  //         completedAt: undefined
-  //       }
-  //     ]
-  //   });
+export class Main extends Component {
+  // onLogout(e) {
+  //   let {dispatch} = this.props;
+  //   e.preventDefault();
+  //
+  //   dispatch(actions.startLogout());
   // }
-
-  // handleSearch(showCompleted, searchText) {
-  //   this.setState({
-  //     showCompleted: showCompleted,
-  //     searchText: searchText.toLowerCase()
-  //   })
-  // }
-
   render() {
-    // let {todos, showCompleted, searchText} = this.state;
-    // let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
-
     return (
       <div>
         <div className="page-actions">
-          <a href="#">Logout</a>
+          <a href="#" onClick={this.onLogout}>Logout</a>
         </div>
         <h1 className="page-title">TodoDux</h1>
 
@@ -65,3 +34,5 @@ export default class Main extends Component {
     )
   }
 }
+
+export default Redux.connect();
