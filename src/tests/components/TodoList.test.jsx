@@ -34,12 +34,12 @@ describe('TodoList', () => {
     let store = configure({
       todos: todos
     });
-    let provider = TestUtils.renderIntoDocument(
+    let Provider = TestUtils.renderIntoDocument(
       <Provider store={store}>
         <ConnectedTodoList />
       </Provider>
     );
-    let todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
+    let todoList = TestUtils.scryRenderedComponentsWithType(Provider, ConnectedTodoList)[0];
     let todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, ConnectedTodo);
 
     expect(todosComponents.length).toBe(todos.length);

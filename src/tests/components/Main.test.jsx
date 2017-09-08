@@ -23,7 +23,7 @@ describe('Main', () => {
       </Provider>
     );
 
-    let main = TestUtils.scryRenderedComponentsWithType(provider, Main)[0];
+    let main = TestUtils.scryRenderedComponentsWithType(Provider, Main)[0];
     let todoList = TestUtils.scryRenderedComponentsWithType(main, TodoList);
 
     expect(todoList.length).toEqual(1);
