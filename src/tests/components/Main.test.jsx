@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Main from 'Main';
-import TodoList from 'TodoList';
+import { TodoList } from 'TodoList';
 import { Provider } from 'react-redux';
 
 const configureStore = require('configureStore');
@@ -23,7 +23,7 @@ describe('Main', () => {
       </Provider>
     );
 
-    let main = TestUtils.scryRenderedComponentsWithType(Provider, Main)[0];
+    let main = TestUtils.scryRenderedComponentsWithType(provider, Main)[0];
     let todoList = TestUtils.scryRenderedComponentsWithType(main, TodoList);
 
     expect(todoList.length).toEqual(1);

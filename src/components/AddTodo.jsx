@@ -3,13 +3,13 @@ const { connect } = require('react-redux');
 const actions = require('actions');
 
 export class AddTodo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //
+  //   };
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ export class AddTodo extends Component {
   render() {
     return (
       <div className="container__footer">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text" ref="todoText" placeholder="What do you need to do?" />
           <button className="button expanded">Add Todo</button>
         </form>

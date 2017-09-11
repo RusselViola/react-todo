@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import * as Redux from 'react-redux';
-import * as actions from 'actions';
+// import * as Redux from 'react-redux';
+// import * as actions from 'actions';
 
 export class Login extends Component {
-  // onLogin() {
-  //   let {dispatch} = this.props;
-  //
-  //   dispatch(actions.startLogin());
-  // }
   render() {
     return (
       <div>
@@ -20,13 +15,11 @@ export class Login extends Component {
               <p>
                 Login with GitHub account below.
               </p>
-              <button className="button" onClick={this.onLogin}>Login With GitHub</button>
+              <button className="button">Login With GitHub</button>
             </div>
           </div>
         </div>
       </div>
     )
   }
-}
-
-export default Redux.connect()(Login);
+};

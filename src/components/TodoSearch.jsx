@@ -3,12 +3,12 @@ const { connect } = require('react-redux');
 const actions = require('actions');
 
 export class TodoSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //
+  //   };
+  // }
 
   render() {
     let {dispatch, showCompleted, searchText} = this.props;
