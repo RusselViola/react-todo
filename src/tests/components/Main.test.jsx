@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Main from 'Main';
-import { TodoList } from 'TodoList';
+import TodoList from 'TodoList';
 import { Provider } from 'react-redux';
 
 const configureStore = require('configureStore');

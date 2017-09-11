@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import * as Redux from 'react-redux';
 // import * as actions from 'actions';
 
-export class Login extends Component {
+export default class Login extends Component {
   render() {
     return (
       <div>
