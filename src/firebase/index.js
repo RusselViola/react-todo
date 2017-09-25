@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 // Initialize Firebase
 
@@ -14,8 +14,9 @@ try {
 
   firebase.initializeApp(config);
 } catch(e) {
-
+  console.log(e);
 }
 
+export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const firebaseRef = firebase.database().ref();
 export default firebase;

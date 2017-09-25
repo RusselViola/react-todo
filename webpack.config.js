@@ -16,10 +16,6 @@ module.exports = {
     'script!foundation-sites/dist/foundation.min.js',
     './src/app.jsx'
   ],
-  output: {
-    path: __dirname,
-    filename: './public/bundle.js'
-  },
   externals: {
     jquery: 'jQuery'
   },
@@ -45,6 +41,10 @@ module.exports = {
       }
     })
   ],
+  output: {
+    path: __dirname,
+    filename: './public/bundle.js'
+  },
   resolve: {
     root: __dirname,
     modulesDirectories: [
