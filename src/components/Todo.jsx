@@ -1,7 +1,7 @@
+import moment from 'moment';
 import React, { Component } from 'react';
-const { connect } = require('react-redux');
-const actions = require('actions');
-const moment = require('moment');
+import  { connect } from 'react-redux';
+import * as actions from 'actions';
 
 export class Todo extends Component {
   render() {

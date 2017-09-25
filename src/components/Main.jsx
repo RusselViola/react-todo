@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import * as Redux from 'react-redux';
+import * as Redux from 'react-redux';
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
