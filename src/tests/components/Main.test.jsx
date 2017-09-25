@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Main from 'Main';
+import { Main } from 'Main';
 import TodoList from 'TodoList';
 import { Provider } from 'react-redux';
 

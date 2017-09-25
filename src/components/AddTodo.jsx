@@ -5,9 +5,7 @@ import * as actions from 'actions';
 export class AddTodo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    //removed this.state
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 

@@ -5,9 +5,7 @@ import * as actions from 'actions';
 export class TodoSearch extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    //removed this.stota
   }
 
   render() {
