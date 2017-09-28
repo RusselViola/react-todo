@@ -26,6 +26,7 @@ $(document).foundation();
 //App css
 require('style!css!sass!applicationStyles')
 
+//Middleware for login routes
 let requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
     replace('/');
