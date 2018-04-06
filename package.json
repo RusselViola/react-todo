@@ -2,6 +2,9 @@
   "name": "ToDo",
   "version": "1.0.0",
   "description": "Task Tracking with React!",
+  "engines": {
+    "node": "8.5.0"
+  },
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test karma start",
