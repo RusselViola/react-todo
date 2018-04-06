@@ -4,6 +4,7 @@ import  { connect } from 'react-redux';
 import * as actions from 'actions';
 
 export class Todo extends Component {
+  
   render() {
     let {text, id, completed, createdAt, completedAt, dispatch} = this.props;
     let todoClassName = completed ? 'todo todo-completed' : 'todo';

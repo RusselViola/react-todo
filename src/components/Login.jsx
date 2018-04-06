@@ -3,10 +3,7 @@ import * as Redux from 'react-redux';
 import * as actions from 'actions';
 
 export class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.onLogin = this.onLogin.bind(this);
-  }
+
   onLogin() {
     let {dispatch} = this.props;
 
@@ -24,7 +21,7 @@ export class Login extends Component {
               <p>
                 Login with GitHub account below.
               </p>
-              <button className="button" onClick={this.onLogin}>Login With GitHub</button>
+              <button className="button" onClick={this.onLogin.bind(this)}>Login With GitHub</button>
             </div>
           </div>
         </div>
