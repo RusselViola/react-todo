@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Task Tracking with React!",
   "engines": {
-    "node": "8.5.0"
+    "node": "8.5.0",
+    "npm": "5.6.0"
   },
   "main": "index.js",
   "scripts": {
