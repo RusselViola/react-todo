@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 
 export class TodoSearch extends Component {
-  constructor(props) {
-    super(props);
-    //removed this.stota
-  }
 
   render() {
     let {dispatch, showCompleted, searchText} = this.props;

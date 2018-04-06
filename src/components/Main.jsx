@@ -7,10 +7,7 @@ import TodoSearch from 'TodoSearch';
 import * as actions from 'actions';
 
 export class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.onLogout = this.onLogout.bind(this);
-  }
+  
   onLogout(e) {
     let {dispatch} = this.props;
     e.preventDefault();
@@ -21,7 +18,7 @@ export class Main extends Component {
     return (
       <div>
         <div className="page-actions">
-          <a href="#" onClick={this.onLogout}>Logout</a>
+          <a href="#" onClick={this.onLogout.bind(this)}>Logout</a>
         </div>
         <h1 className="page-title">TodoDux</h1>
 
